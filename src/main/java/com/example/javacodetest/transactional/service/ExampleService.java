@@ -3,16 +3,17 @@ package com.example.javacodetest.transactional.service;
 import com.example.javacodetest.transactional.domain.entity.ExampleEntity;
 import com.example.javacodetest.transactional.exception.CustomException;
 import com.example.javacodetest.transactional.repo.ExampleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class ExampleService {
 
-    @Autowired
-    private ExampleRepository exampleRepository;
+    private final ExampleRepository exampleRepository;
 
     // 트랜잭션이 없으면 새로운 트랜잭션을 시작하고, 있으면 참여
     @Transactional(propagation = Propagation.REQUIRED)
